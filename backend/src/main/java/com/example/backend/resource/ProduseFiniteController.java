@@ -4,20 +4,14 @@ import com.example.backend.domain.ProduseFinite;
 import com.example.backend.service.ProduseFiniteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/produse-finite")
+@RequestMapping("/api/prodFinite")
 public class ProduseFiniteController {
 
     private final ProduseFiniteService produseFiniteService;
-    private final String UPLOAD_DIR = "uploads/"; // Director pentru upload
 
     public ProduseFiniteController(ProduseFiniteService produseFiniteService) {
         this.produseFiniteService = produseFiniteService;
@@ -29,20 +23,7 @@ public class ProduseFiniteController {
     }
 
     @PostMapping
-    public ProduseFinite createProdusFinis(@RequestParam("denumire") String denumire,
-                                           @RequestParam("descriere") String descriere,
-                                           @RequestParam("stoc") Integer stoc,
-                                           @RequestParam("pret") Double pret,
-                                           @RequestParam(value = "poza", required = false) MultipartFile poza) throws IOException {
-        String pozaUrl = null;
-        if (poza != null && !poza.isEmpty()) {
-            Path path = Paths.get(UPLOAD_DIR + poza.getOriginalFilename());
-            Files.createDirectories(path.getParent());
-            Files.write(path, poza.getBytes());
-            pozaUrl = path.toString();
-        }
-
-        ProduseFinite produsFinit = new ProduseFinite(denumire, descriere, stoc, pret, pozaUrl);
+    public ProduseFinite createProdusFinis(@RequestBody ProduseFinite produsFinit) {
         return produseFiniteService.saveProdusFinit(produsFinit);
     }
 

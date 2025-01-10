@@ -13,16 +13,14 @@ public class ProduseFinite {
     private Integer stoc;
     private Double pret;
 
-    private String pozaUrl; // URL pentru stocarea imaginii
+    public ProduseFinite() {
+    }
 
-    public ProduseFinite() {}
-
-    public ProduseFinite(String denumire, String descriere, Integer stoc, Double pret, String pozaUrl) {
+    public ProduseFinite(String denumire, String descriere, Integer stoc, Double pret) {
         this.denumire = denumire;
         this.descriere = descriere;
         this.stoc = stoc;
         this.pret = pret;
-        this.pozaUrl = pozaUrl;
     }
 
     public Long getId() {
@@ -61,11 +59,4 @@ public class ProduseFinite {
         this.pret = pret;
     }
 
-    public String getPozaUrl() {
-        return pozaUrl;
-    }
-
-    public void setPozaUrl(String pozaUrl) {
-        this.pozaUrl = pozaUrl;
-    }
 }

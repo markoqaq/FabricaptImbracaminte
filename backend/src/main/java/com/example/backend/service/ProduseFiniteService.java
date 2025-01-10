@@ -29,7 +29,6 @@ public class ProduseFiniteService {
             produs.setDescriere(produsDetails.getDescriere());
             produs.setStoc(produsDetails.getStoc());
             produs.setPret(produsDetails.getPret());
-            produs.setPozaUrl(produsDetails.getPozaUrl());
             return produseFiniteRepository.save(produs);
         });
     }

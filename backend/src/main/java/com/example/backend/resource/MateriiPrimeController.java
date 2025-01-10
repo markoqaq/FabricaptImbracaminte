@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/materii-prime")
+@RequestMapping("/api/matPrime")
 public class MateriiPrimeController {
 
     private final MateriiPrimeService materiiPrimeService;
